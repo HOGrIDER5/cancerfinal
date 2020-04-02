@@ -27,50 +27,50 @@ public class Cancer {
     //The border will always contain elemnts with postive sigins
     //(Blank Border)
    
-    for (int i=0;i<70;i++){
-        row = (int)(Math.random()*13+1);
-        col = (int)(Math.random()*13+1);
-        grid[row][col]="-";
+    for (int i=0;i<96;i++){
+    row = (int)(Math.random()*13+1);
+    col = (int)(Math.random()*13+1);
+    grid[row][col]="-";
     }
     //Print out the current grid
     displayGrid();
     
     //varaible to determine the size of the grid
     gridSize=0;
-    //
-    //
-    //
+    // for loop in order to catch the negative signs
+    for(int i=0; i<96;i++){
     int gridRow=(int)(Math.random()*13+1);
     int gridCol=(int)(Math.random()*13+1);
-    
-    System.out.println(" The blob "+ gridRow+","+gridCol+" will be remeoved");
     floodFill(gridRow, gridCol);
-    System.out.println(" The Blob had " + gridSize+" items in it");
-        System.out.println("The new grid is");
+    }
+    System.out.println("The new grid is");
+    
     // Display out the new grid
     displayGrid();
     }
     public static void floodFill(int row, int col){
+  
         if (grid[row][col].equals("-")){
-            grid[row][col]="+";
+            grid[row][col]=" ";
             gridSize++;
             floodFill(row-1,col+1);
             floodFill(row-1,col);
-            floodFill(row-1,col+1);
+            floodFill(row-1,col-1);
             floodFill(row,col-1);
-            floodFill(row,col+1);
+            floodFill(row,col+1); 
+            floodFill(row,col);
             floodFill(row+1,col-1);
             floodFill(row+1,col);
-            floodFill(row+1,col+1);
+            floodFill(row+1,col+1);      
         }
     }
-    public static void displayGrid(){
-        String output="               ";
-        for (int row=0;row<=14;row++){
-            if((row>0)&&(row<14)){
-                output+=(row%13);
+   public static void displayGrid(){
+        String output=" ";
+        for (int row=0;row<15;row++){
+            if((row>0)&&(row<15)){
+                output+=(row%15);
             }
-            for (int col =0; col<=15;col++){
+            for (int col =0; col<15;col++){
                 output+=grid [row][col];
             }
             output+="\n";
